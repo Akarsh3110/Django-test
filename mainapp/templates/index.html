@@ -1,0 +1,22 @@
+<h1>Inventory Application</h1>
+
+<form action="{% url 'create_product' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token%}
+    ProductName:<input type="text" name="ProductName"/>
+    ProductCode:<input type="text" name="ProductCode"/>
+    HSNCode:<input type="text" name="HSNCode"/>
+    TotalStock:<input type="text" name="TotalStock"/>
+    ProductImage:<input type="file" name="ProductImage"/>
+<button type="submit">Submit</button>
+</form>
+{% block content %}
+<div class="productList">
+    <h2>Produc List</h2>
+    {% for product_obj in products %}
+    <h3>ProductName:{{product_obj.ProductName}}</h3>
+    <h3>ProductCode:{{product_obj.ProductCode}}</h3>
+    <h3>HSNCode:{{product_obj.HSNCode}}</h3>
+    <h3>TotalStock:{{product_obj.TotalStock}}</h3>
+    {% endfor %}
+</div>
+{% endblock content %}
